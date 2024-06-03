@@ -86,7 +86,6 @@ Variable "sex" doesn't appear in the graph
 In the graph, variables "name", "year" and "total" are being used. Variables "name" and "year" are being used exactly as is from raw data but the variable "total" is being derived from "count" variable in the raw data being summed up to total births per name and year irrespective to gender.
 
 
-
 ### Step 4
 
 ##### Have cases been filtered out?
@@ -101,21 +100,16 @@ To build the graph, cases (data) have been grouped by year and name to summarize
 The variable "total" was created from "count" variable in raw data being summed up to total births per name and year.
 
 
-
-##### Have cases been grouped and summarized within groups in any way?
-
-My answer here.... 
-
-
-##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
-
-My answer here.... 
-
-
 ### Step 5
-
-
 Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).  
+
+1. Select the five names
+
+2. Filter the BabyNames dataset for only those 5 names selected in Step-1 and store the output data in separate variable as a dataframe
+
+3. Use "group_by" function to group by the output data from Step-2 at "name" and "year" level
+
+4. Use "summarise" function to get the total number of births  recorded for each of the names per year on the grouped by data from Step-3
 
 
 ### Step 6
@@ -127,10 +121,26 @@ Using the BabyNames data set, filter the data to display just the 5 names that y
 ```{r}
 ## Create my glyph ready data set here
 
+#7.1 Select five name - using same list of names as mentioned above in assignment
+names_selected <- c('Arnaldo', 'Ahmid', 'Nicho', 'Jennaveve', 'Christy')
 
+#7.2 filter the dataset
+filtered_data <- filter(BabyNames,name %in% names_selected)
+
+#7.3 and 7.4
+GlyphReadyForm <- filtered_data %>% group_by(name,year) %>% summarise(total = sum(count,na.rm=TRUE))
+```
+
+```{r}
 # inspect the result
+## Summary of data
+summary(GlyphReadyForm)
 
+## Structure of data
+str(GlyphReadyForm)
 
+## sample rows of data
+head(GlyphReadyForm)
 ```
 
 
@@ -151,12 +161,14 @@ If you prepared your `GlyphReadyForm` data set correctly, you should just be abl
 
 
 ```{r}
-#My code here 
-
-
+#Using the same graph code from above
+GlyphReadyForm %>%
+  ggplot(aes(x = year, y = total, group = name)) + 
+  geom_line(size = 1, alpha = 0.5, aes(color = name)) + 
+  ylab("Popularity") + 
+  xlab("Year") +
+  ggtitle("Popularity of Names Over Time")
 ```
-
-
 
 #### Example of Dots versus Lines
 
@@ -177,4 +189,5 @@ GlyphReadyForm %>%
   ylab("Popularity") + 
   xlab("Year")
 ```
+
 
