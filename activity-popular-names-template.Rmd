@@ -90,8 +90,16 @@ In the graph, variables "name", "year" and "total" are being used. Variables "na
 ### Step 4
 
 ##### Have cases been filtered out?
+In the graph, cases (data) have been filtered to only those names which were being shown.
 
-My answer here.... 
+
+##### Have cases been grouped and summarized within groups in any way?
+To build the graph, cases (data) have been grouped by year and name to summarize/aggregate the total births happened in that year with that specific name irrespective of sex.
+
+
+##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
+The variable "total" was created from "count" variable in raw data being summed up to total births per name and year.
+
 
 
 ##### Have cases been grouped and summarized within groups in any way?
