@@ -80,12 +80,11 @@ head(BabyNames)
 ### Step 3 
 
 ##### What variable(s) from the raw data table do not appear at all in the graph?
-
-My answer here.... 
+Variable "sex" doesn't appear in the graph
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
+In the graph, variables "name", "year" and "total" are being used. Variables "name" and "year" are being used exactly as is from raw data but the variable "total" is being derived from "count" variable in the raw data being summed up to total births per name and year irrespective to gender.
 
-My answer here.... 
 
 
 ### Step 4
